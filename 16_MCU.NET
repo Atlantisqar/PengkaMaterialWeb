@@ -1,0 +1,255 @@
+PARTS LIST
+
+N.M               C0402           C1
+15pF/50V          C0402           C2
+N.M               C0402           C3
+15pF/50V          C0402           C4
+2.2uF/10V         C0402           C5
+2.2uF/10V         C0402           C6
+100nF/50V         C0402           C7
+100nF/50V         C0402           C8
+1uF/10V           C0402           C9
+10uF/10V          C-0603          C10
+1uF/10V           C0402           C11
+100nF/50V         C0402           C12
+100nF/50V         C0402           C13
+100nF/50V         C0402           C14
+100nF/50V         C0402           C15
+100nF/50V         C0402           C16
+100nF/50V         C0402           C17
+100nF/50V         C0402           C18
+BDFN2C051RF       DFN1006         D1
+BDFN2C051RF       DFN1006         D2
+BDFN2C051RF       DFN1006         D3
+BDFN2C051RF       DFN1006         D4
+BDFN2C051RF       DFN1006         D5
+BDFN2C051RF       DFN1006         D6
+BDFN2C051RF       DFN1006         D7
+BDFN2C051RF       DFN1006         D8
+LED 0603 RED      LED_0603_RED    D9
+BDFN2C051RF       DFN1006         D10
+BDFN2C051RF       DFN1006         D11
+BDFN2C051RF       DFN1006         D12
+UPZ1608E221-2R2TF FBMx-11-160808  FB1
+UPZ1608E221-2R2TF FBMx-11-160808  FB2
+UPZ1608E221-2R2TF FBMx-11-160808  FB3
+UPZ1608E221-2R2TF FBMx-11-160808  FB4
+A1254WR-S-3P      A1254AWR-3P-R   J1
+A1254WR-S-3P      A1254AWR-3P-R   J2
+A1254WR-S-3P      A1254AWR-3P-R   J3
+A1254WR-S-3P      A1254AWR-3P-R   J4
+A1251WV-S-5P      CONN-SMD_5P-P1.25_A1251WV-S-5PJ5
+22R/1%            R-0402          R1
+22R/1%            R-0402          R2
+22R/1%            R-0402          R3
+22R/1%            R-0402          R4
+22R/1%            R-0402          R5
+22R/1%            R-0402          R6
+22R/1%            R-0402          R7
+22R/1%            R-0402          R8
+N.M               R-0402          R9
+N.M               R-0402          R10
+N.M               R-0402          R11
+3K/1%             R-0402          R12
+1M/5%             R-0402          R13
+000R              R-0402          R14
+N.M               R-0402          R15
+10K/1%            R-0402          R16
+000R              R-0402          R17
+22R/1%            R-0402          R18
+22R/1%            R-0402          R19
+22R/1%            R-0402          R20
+10K/1%            R-0402          R157
+TP                TP              TP1
+TP                TP              TP2
+TP                TP              TP3
+TP                TP              TP4
+TP                TP              TP5
+TP                TP              TP6
+TP                TP              TP8
+TP                TP              TP9
+TP                TP              TP10
+TP                TP              TP11
+TP                TP              TP12
+TP                TP              TP13
+TP                TP              TP15
+TP                TP              TP21
+TP                TP              TP22
+TP                TP              TP23
+STM32F407VGT6     LQFP-100 ST     U1
+N.M               Q13FC1350004900 Y1
+24MHz/10ppm       CF4025M00020T2076003Y2
+EOS
+NET LIST
+
+NODENAME 3V3_MCU          $
+    C10        2  FB2        1
+NODENAME 3V3_P_EN         $
+    U1        89
+NODENAME 3V3_VMCU         $
+    C11        2  C12        2  C13        2  C14        2  C15        2  C16        2  C17        2  FB1        2  FB2        2  FB3        1  R11        1  R12        2  R17        1  R157       1  U1        11  U1        19  U1        28  U1        50  U1        75  U1       100
+NODENAME 7V4_P_EN         $
+    U1        90
+NODENAME 10V0_P_EN        $
+    U1        91
+NODENAME BAT_SMBC         $
+    U1        67
+NODENAME BAT_SMBD         $
+    U1        66
+NODENAME BQ_I\N\T\        $
+    U1         1
+NODENAME BQ_Q\O\N\        $
+    U1        93
+NODENAME CTL_BOOT0        $
+    R16        1  TP21       1  U1        94
+NODENAME CTL_BOOT1        $
+    R11        2  R15        1  U1        37
+NODENAME CTL_Dock_IN_L    $
+    U1        63
+NODENAME CTL_Dock_IN_R    $
+    U1        64
+NODENAME CTL_FAN_FG       $
+    U1        18
+NODENAME CTL_FAN_PWM      $
+    U1        23
+NODENAME CTL_HD_FAN_EN    $
+    U1        33
+NODENAME CTL_IMU_INT1     $
+    U1        59
+NODENAME CTL_IMU_INT2     $
+    U1        60
+NODENAME CTL_IMU_SCL      $
+    U1        47
+NODENAME CTL_IMU_SDA      $
+    U1        48
+NODENAME CTL_LED          $
+    D9         1  U1         7
+NODENAME CTL_NRST         $
+    C7         2  R20        1  R157       2  U1        14
+NODENAME CTL_SWCLK        $
+    R18        1  U1        71
+NODENAME CTL_SWDIO        $
+    R19        1  U1        72
+NODENAME CTL_Wheel_IN_B   $
+    U1        17
+NODENAME CTL_Wheel_IN_L   $
+    U1        15
+NODENAME CTL_Wheel_IN_R   $
+    U1        16
+NODENAME GND              $
+    C1         1  C2         1  C3         1  C4         1  C5         2  C6         2  C7         1  C10        1  C11        1  C12        1  C13        1  C14        1  C15        1  C16        1  C17        1  D1         2  D2         2  D3         2  D4         2  D5         2  D6         2  D7         2  D8         2  D10        2  D11        2  D12        2  FB4        1  J1         1  J1         A  J1         B  J2         1  J2         A  J2         B  J3         1  J3         A  J3         B  J4         1  J4         A  J4         B  J5         1  J5         A  J5         B  R15        2  R16        2  TP5        1  TP6        1  TP13       1  TP15       1  U1        10  U1        27  U1        74  U1        99  Y2         2  Y2         4
+NODENAME I2Ct_IRQ#        $
+    U1         2
+NODENAME I2Ct_SCL         $
+    U1        95
+NODENAME I2Ct_SDA         $
+    U1        96
+NODENAME L_WL_UART_RX     $
+    R2         1  U1        78
+NODENAME L_WL_UART_TX     $
+    R4         1  U1        79
+NODENAME NetC1-2          $
+    C1         2  R9         2  U1         8  Y1         2
+NODENAME NetC2-2          $
+    C2         2  R13        1  U1        12  Y2         3
+NODENAME NetC3-2          $
+    C3         2  R9         1  R10        2  Y1         1
+NODENAME NetC4-2          $
+    C4         2  R13        2  R14        2  Y2         1
+NODENAME NetC5-1          $
+    C5         1  U1        73
+NODENAME NetC6-1          $
+    C6         1  U1        49
+NODENAME NetC8-2          $
+    C8         2  C9         2  FB1        1  U1        21
+NODENAME NetC18-2         $
+    C18        2  FB3        2  U1        22
+NODENAME NetD1-1          $
+    D1         1  J1         2  R3         2  TP1        1
+NODENAME NetD2-1          $
+    D2         1  J1         3  R1         2  TP2        1
+NODENAME NetD3-1          $
+    D3         1  J2         2  R4         2  TP3        1
+NODENAME NetD4-1          $
+    D4         1  J2         3  R2         2  TP4        1
+NODENAME NetD5-1          $
+    D5         1  J3         2  R7         2  TP9        1
+NODENAME NetD6-1          $
+    D6         1  J3         3  R5         2  TP10       1
+NODENAME NetD7-1          $
+    D7         1  J4         2  R8         2  TP11       1
+NODENAME NetD8-1          $
+    D8         1  J4         3  R6         2  TP12       1
+NODENAME NetD9-2          $
+    D9         2  R12        1
+NODENAME NetD10-1         $
+    D10        1  J5         2  R20        2
+NODENAME NetD11-1         $
+    D11        1  J5         3  R19        2
+NODENAME NetD12-1         $
+    D12        1  J5         4  R18        2
+NODENAME NetJ5-5          $
+    J5         5  R17        2
+NODENAME NetR10-1         $
+    R10        1  U1         9
+NODENAME NetR14-1         $
+    R14        1  U1        13
+NODENAME NetTP8-1         $
+    TP8        1  U1        70
+NODENAME NetTP22-1        $
+    TP22       1  U1        97
+NODENAME NetTP23-1        $
+    TP23       1  U1        98
+NODENAME R_WL_UART_RX     $
+    R5         1  U1        80
+NODENAME R_WL_UART_TX     $
+    R7         1  U1        83
+NODENAME Retract_B_EN     $
+    U1        40
+NODENAME Retract_B_PWM    $
+    U1        36
+NODENAME Retract_L_EN     $
+    U1        38
+NODENAME Retract_L_PWM    $
+    U1        24
+NODENAME Retract_R_EN     $
+    U1        39
+NODENAME Retract_R_PWM    $
+    U1        35
+NODENAME SLAM_UART_RX     $
+    R1         1  U1        25
+NODENAME SLAM_UART_TX     $
+    R3         1  U1        26
+NODENAME Ultrasonic_L_CS_B$
+    U1        51
+NODENAME Ultrasonic_L_INT1$
+    U1        55
+NODENAME Ultrasonic_L_INT2$
+    U1        56
+NODENAME Ultrasonic_L_MISO$
+    U1        53
+NODENAME Ultrasonic_L_MOSI$
+    U1        54
+NODENAME Ultrasonic_L_SCLK$
+    U1        52
+NODENAME Ultrasonic_R_CS_B$
+    U1        29
+NODENAME Ultrasonic_R_INT1$
+    U1        57
+NODENAME Ultrasonic_R_INT2$
+    U1        58
+NODENAME Ultrasonic_R_MISO$
+    U1        31
+NODENAME Ultrasonic_R_MOSI$
+    U1        32
+NODENAME Ultrasonic_R_SCLK$
+    U1        30
+NODENAME VI_UART_RX       $
+    R6         1  U1        68
+NODENAME VI_UART_TX       $
+    R8         1  U1        69
+NODENAME VRTC             $
+    U1         6
+NODENAME VSSA             $
+    C8         1  C9         1  C18        1  FB4        2  U1        20
+EOS

@@ -1,0 +1,44 @@
+PARTS LIST
+
+100nF             C0603_S         C1
+10uF              0805电容          C2
+10uF              0805电容          C3
+1uF               C0603_S         C4
+2.2uF             C0603_S         C5
+100nF             C0603_S         C6
+100nF             C0603_S         C7
+10uF              0805电容          C8
+10uF              0805电容          C9
+WAFER-ph2.0-3pzz  CONN-TH_PH2.0D-L-3PCN1
+ZX-SH1.0-3plt     CONN-SMD_3P-P1.00_HDGC_HDGC1002WV-S-3PCN2
+hx pz2.54-1x4p zz HDR-TH_4P-P2.54-V-MH1
+wj15edgrc-3.81-02p-14-00aCONN-TH_2P-P3.81_WJ15EDGRC-3.81-2PP1
+bc807-40,215_c57316SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BRQ1
+10kΩ              R0603           R1
+10kΩ              R0603           R2
+10kΩ              R0603           R3
+10kΩ              R0603           R4
+20kΩ              R0603           R5
+tlv76133dcyr      SOT-223-4_L6.5-W3.5-P2.30-LS7.0-TRU1
+sn74lvc1g126dckr(umw)SC-70-5_L2.0-W1.3-P0.65-LS2.1-BRU2
+sn74lvc1g125dbvr  SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BLU3
+EOS
+NET LIST
+
+NODENAME DATA             $
+    CN1        1  CN2        1  R1         1  U2         4  U3         2
+NODENAME GND              $
+    C1         2  C2         2  C3         2  C4         2  C5         1  C6         2  C7         1  C8         2  C9         2  CN1        3  CN2        3  H1         4  P1         2  R5         1  U1         1  U2         3  U3         3
+NODENAME NetQ1-1          $
+    Q1         1  R4         1
+NODENAME RXD              $
+    H1         2  R2         1  U3         4
+NODENAME TXD              $
+    H1         1  R3         1  R4         2  U2         2
+NODENAME TXEN             $
+    Q1         3  R5         2  U2         1  U3         1
+NODENAME VCC              $
+    C5         2  C6         1  C7         2  H1         3  Q1         2  R1         2  R2         2  R3         2  U1         2  U1         4  U2         5  U3         5
+NODENAME VMOTOR_10V       $
+    C1         1  C2         1  C3         1  C4         1  C8         1  C9         1  CN1        2  CN2        2  P1         1  U1         3
+EOS

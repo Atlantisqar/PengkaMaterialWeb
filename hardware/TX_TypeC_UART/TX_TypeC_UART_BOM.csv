@@ -1,0 +1,13 @@
+Reference,Quantity,Value/Part,Recommended package,Function,Notes
+J1,1,USB Type-C USB2.0 receptacle,16-pin SMT + shell tabs,USB connector,"Choose exact footprint from purchased part; USB4105-GF-A-class suggested"
+U4,1,CP2102N-A02-GQFN20,QFN-20 3x3 mm EP,USB-to-UART bridge,3.3 V self-powered mode
+U5,1,TMUX1574PW,TSSOP-16,4-channel 2:1 signal switch,Only channels 1 and 2 used
+U6,1,USBLC6-2SC6,SOT-23-6,USB D+/D- ESD protection,Place next to J1
+SW1,1,1-position SPST DIP switch,2-pin SMD or THT,Select Dupont/Type-C,OFF=Dupont ON=Type-C
+R6 R7,2,5.1 kΩ 1%,0603,Type-C CC pull-down,One resistor per CC pin
+R8,1,22.1 kΩ 1%,0603,VBUS sense divider upper,USB VBUS to VBUS_SENSE
+R9,1,47.5 kΩ 1%,0603,VBUS sense divider lower,VBUS_SENSE to GND
+R10,1,100 kΩ,0603,UART_SEL pull-down,Default Dupont
+R11,1,1 kΩ,0603,CP2102N reset pull-up,VCC to RSTb
+C10 C12,2,4.7 µF 10 V X5R,0805,CP2102N power bypass,One at VREGIN and one at VDD
+C11 C13 C14,3,100 nF 16 V X7R,0603,Local decoupling,Place at U4/U5 pins

@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <defs>
+    <style>
+      .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#94a3b8;stroke-width:2}.title{font:700 30px 'Microsoft YaHei',sans-serif;fill:#0f172a}.h2{font:700 19px 'Microsoft YaHei',sans-serif;fill:#0f172a}.t{font:15px 'Microsoft YaHei',sans-serif;fill:#1e293b}.sm{font:13px 'Microsoft YaHei',sans-serif;fill:#475569}.pin{font:12px ui-monospace,Consolas,monospace;fill:#334155}.wire{fill:none;stroke:#334155;stroke-width:3}.core{stroke:#0f766e}.dup{stroke:#2563eb}.usb{stroke:#7c3aed}.pwr{stroke:#dc2626}.gnd{stroke:#475569}.dash{stroke-dasharray:8 6}.node{fill:#334155}.label{font:700 13px ui-monospace,Consolas,monospace;fill:#0f172a}.chip{fill:#f1f5f9;stroke:#475569;stroke-width:2}.note{fill:#fefce8;stroke:#ca8a04;stroke-width:1.5}.modeA{fill:#dbeafe;stroke:#2563eb}.modeB{fill:#ede9fe;stroke:#7c3aed}.nc{stroke:#94a3b8;stroke-width:2}.res{fill:#fff;stroke:#334155;stroke-width:2}.cc{stroke:#ca8a04}.esd{fill:#fff7ed;stroke:#ea580c;stroke-width:2}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334155"/></marker>
+  </defs>
+  <rect class="bg" width="1600" height="1000"/>
+  <text x="56" y="56" class="title">TX.NET — 杜邦 / USB Type-C 串口拨码切换原理图</text>
+  <text x="57" y="86" class="sm">3.3 V UART · CP2102N 自供电 · SW1 OFF=杜邦，ON=Type-C · Type-C VBUS 仅检测、不供电</text>
+
+  <rect x="42" y="110" width="1516" height="600" rx="12" class="panel"/>
+  <text x="66" y="145" class="h2">UART 信号与接口选择</text>
+
+  <!-- Original core -->
+  <rect x="72" y="194" width="258" height="270" rx="8" class="chip"/>
+  <text x="96" y="226" class="h2">原板 UART 核心</text>
+  <text x="96" y="261" class="t">U2 SN74LVC1G126</text>
+  <text x="96" y="284" class="sm">TXD_CORE → DATA 驱动</text>
+  <text x="96" y="318" class="t">U3 SN74LVC1G125</text>
+  <text x="96" y="341" class="sm">DATA → RXD_CORE 接收</text>
+  <text x="96" y="375" class="t">Q1 + R4 + R5</text>
+  <text x="96" y="398" class="sm">由 TXD_CORE 自动生成 TXEN</text>
+  <text x="96" y="435" class="label">VCC = 3.3 V</text>
+  <line x1="330" y1="280" x2="410" y2="280" class="wire core"/>
+  <circle cx="330" cy="280" r="4" class="node"/>
+  <text x="339" y="270" class="label">TXD_CORE</text>
+  <line x1="330" y1="370" x2="410" y2="370" class="wire core"/>
+  <circle cx="330" cy="370" r="4" class="node"/>
+  <text x="339" y="360" class="label">RXD_CORE</text>
+
+  <!-- Mux -->
+  <rect x="410" y="182" width="340" height="320" rx="8" class="chip"/>
+  <text x="438" y="216" class="h2">U5 TMUX1574PW</text>
+  <text x="438" y="240" class="sm">双路 2:1 信号开关（通道 3/4 NC）</text>
+  <line x1="410" y1="280" x2="470" y2="280" class="wire core"/>
+  <text x="427" y="271" class="pin">D1 (4)</text>
+  <line x1="470" y1="280" x2="630" y2="260" class="wire dup"/>
+  <line x1="470" y1="280" x2="630" y2="315" class="wire usb dash"/>
+  <circle cx="470" cy="280" r="5" class="node"/>
+  <text x="638" y="264" class="pin">S1A (2)  DUPONT_TX</text>
+  <text x="638" y="319" class="pin">S1B (3)  USB_UART_RX</text>
+  <line x1="410" y1="370" x2="470" y2="370" class="wire core"/>
+  <text x="427" y="361" class="pin">D2 (7)</text>
+  <line x1="470" y1="370" x2="630" y2="350" class="wire dup"/>
+  <line x1="470" y1="370" x2="630" y2="405" class="wire usb dash"/>
+  <circle cx="470" cy="370" r="5" class="node"/>
+  <text x="638" y="354" class="pin">S2A (5)  DUPONT_RX</text>
+  <text x="638" y="409" class="pin">S2B (6)  USB_UART_TX</text>
+  <text x="438" y="456" class="pin">/EN (15) → GND   VDD (16) → VCC   C14=100 nF</text>
+
+  <!-- Selector -->
+  <rect x="430" y="122" width="300" height="50" rx="6" class="note"/>
+  <text x="448" y="143" class="t">SW1 一位 SPST 拨码：ON → VCC</text>
+  <text x="448" y="163" class="sm">SEL(1)，R10=100 kΩ 下拉；OFF 默认杜邦</text>
+  <line x1="580" y1="172" x2="580" y2="182" class="wire cc"/>
+
+  <!-- Header -->
+  <rect x="820" y="190" width="230" height="180" rx="8" class="panel"/>
+  <text x="846" y="222" class="h2">H1 杜邦排针</text>
+  <line x1="750" y1="260" x2="820" y2="260" class="wire dup"/>
+  <text x="842" y="265" class="pin">1  TX</text>
+  <line x1="750" y1="350" x2="820" y2="305" class="wire dup"/>
+  <text x="842" y="310" class="pin">2  RX</text>
+  <text x="842" y="337" class="pin">3  VCC (3.3 V)</text>
+  <text x="842" y="359" class="pin">4  GND</text>
+  <rect x="845" y="386" width="176" height="32" rx="16" class="modeA"/>
+  <text x="872" y="408" class="t">SW1 OFF：已选择</text>
+
+  <!-- CP2102 -->
+  <rect x="820" y="454" width="300" height="218" rx="8" class="chip"/>
+  <text x="846" y="486" class="h2">U4 CP2102N-GQFN20</text>
+  <line x1="750" y1="315" x2="780" y2="315" class="wire usb dash"/>
+  <line x1="780" y1="315" x2="780" y2="540" class="wire usb dash"/>
+  <line x1="780" y1="540" x2="820" y2="540" class="wire usb dash"/>
+  <text x="846" y="545" class="pin">RXD (17) ← TXD_CORE</text>
+  <line x1="750" y1="405" x2="795" y2="405" class="wire usb dash"/>
+  <line x1="795" y1="405" x2="795" y2="575" class="wire usb dash"/>
+  <line x1="795" y1="575" x2="820" y2="575" class="wire usb dash"/>
+  <text x="846" y="580" class="pin">TXD (18) → RXD_CORE</text>
+  <text x="846" y="612" class="pin">D+ (4)   D− (5)   VBUS (8)</text>
+  <text x="846" y="636" class="pin">VDD (6), VREGIN (7) → VCC</text>
+  <text x="846" y="658" class="pin">GND (3,12,EP) → GND</text>
+  <rect x="846" y="687" width="205" height="32" rx="16" class="modeB"/>
+  <text x="869" y="709" class="t">SW1 ON：选择 Type-C</text>
+
+  <!-- ESD and connector -->
+  <line x1="1120" y1="600" x2="1172" y2="600" class="wire usb"/>
+  <line x1="1120" y1="630" x2="1172" y2="630" class="wire usb"/>
+  <text x="1128" y="591" class="pin">D+</text><text x="1128" y="649" class="pin">D−</text>
+  <rect x="1172" y="560" width="120" height="110" rx="6" class="esd"/>
+  <text x="1188" y="592" class="t">U6</text>
+  <text x="1188" y="615" class="pin">USBLC6-</text>
+  <text x="1188" y="635" class="pin">2SC6 ESD</text>
+  <line x1="1292" y1="600" x2="1350" y2="600" class="wire usb"/>
+  <line x1="1292" y1="630" x2="1350" y2="630" class="wire usb"/>
+  <rect x="1350" y="450" width="168" height="230" rx="8" class="panel"/>
+  <text x="1370" y="484" class="h2">J1 USB-C</text>
+  <text x="1370" y="515" class="pin">A6/B6  D+</text>
+  <text x="1370" y="540" class="pin">A7/B7  D−</text>
+  <text x="1370" y="575" class="pin">A5  CC1</text>
+  <text x="1370" y="600" class="pin">B5  CC2</text>
+  <text x="1370" y="635" class="pin">VBUS ×4</text>
+  <text x="1370" y="660" class="pin">GND/SH → GND</text>
+
+  <!-- Power / CC detail -->
+  <rect x="42" y="735" width="1516" height="225" rx="12" class="panel"/>
+  <text x="66" y="772" class="h2">Type-C 配置、电源与复位（精确连接）</text>
+  <text x="76" y="815" class="label">CC1</text>
+  <line x1="120" y1="810" x2="165" y2="810" class="wire cc"/>
+  <rect x="165" y="797" width="92" height="26" class="res"/>
+  <text x="178" y="815" class="pin">R6 5.1k</text>
+  <line x1="257" y1="810" x2="300" y2="810" class="wire gnd"/>
+  <text x="306" y="815" class="label">GND</text>
+  <text x="76" y="862" class="label">CC2</text>
+  <line x1="120" y1="857" x2="165" y2="857" class="wire cc"/>
+  <rect x="165" y="844" width="92" height="26" class="res"/>
+  <text x="178" y="862" class="pin">R7 5.1k</text>
+  <line x1="257" y1="857" x2="300" y2="857" class="wire gnd"/>
+  <text x="306" y="862" class="label">GND</text>
+
+  <text x="410" y="815" class="label">VBUS_RAW</text>
+  <line x1="505" y1="810" x2="545" y2="810" class="wire pwr"/>
+  <rect x="545" y="797" width="105" height="26" class="res"/>
+  <text x="555" y="815" class="pin">R8 22.1k</text>
+  <line x1="650" y1="810" x2="720" y2="810" class="wire pwr"/>
+  <circle cx="720" cy="810" r="4" class="node"/>
+  <text x="680" y="798" class="label">VBUS_SENSE → U4.8</text>
+  <line x1="720" y1="810" x2="720" y2="850" class="wire gnd"/>
+  <rect x="675" y="850" width="90" height="26" class="res"/>
+  <text x="685" y="868" class="pin">R9 47.5k</text>
+  <line x1="720" y1="876" x2="720" y2="910" class="wire gnd"/>
+  <text x="700" y="932" class="label">GND</text>
+  <text x="430" y="900" class="sm">VBUS 只进入检测分压；不与 VCC / VMOTOR_10V 相连</text>
+
+  <text x="885" y="812" class="label">VCC 3.3V</text>
+  <line x1="972" y1="807" x2="1030" y2="807" class="wire pwr"/>
+  <circle cx="1030" cy="807" r="4" class="node"/>
+  <line x1="1030" y1="807" x2="1030" y2="875" class="wire pwr"/>
+  <text x="1042" y="825" class="pin">U4.6 VDD</text>
+  <text x="1042" y="848" class="pin">U4.7 VREGIN</text>
+  <text x="1042" y="871" class="pin">U5.16 VDD</text>
+  <text x="885" y="900" class="sm">C10/C12=4.7 µF；C11/C13/C14=100 nF，就近放置</text>
+
+  <text x="1282" y="810" class="label">VCC</text>
+  <line x1="1322" y1="805" x2="1355" y2="805" class="wire pwr"/>
+  <rect x="1355" y="792" width="78" height="26" class="res"/>
+  <text x="1368" y="810" class="pin">R11 1k</text>
+  <line x1="1433" y1="805" x2="1490" y2="805" class="wire pwr"/>
+  <text x="1442" y="794" class="label">U4.9 /RST</text>
+  <rect x="1280" y="848" width="220" height="72" rx="6" class="note"/>
+  <text x="1298" y="874" class="t">丝印：</text>
+  <text x="1298" y="899" class="label">OFF=DUPONT  ON=TYPE-C</text>
+</svg>
